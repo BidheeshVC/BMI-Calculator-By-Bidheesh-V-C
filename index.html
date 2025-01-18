@@ -14,6 +14,9 @@
 			--accent-color: #FFE66D;
 			--dark-color: #2C3E50;
 			--light-color: #F7F9FC;
+			--glass-bg: rgba(255, 255, 255, 0.1);
+			--glass-border: rgba(255, 255, 255, 0.2);
+			--glass-shadow: rgba(31, 38, 135, 0.37);
 		}
 
 		body {
@@ -24,52 +27,83 @@
 		}
 
 		.calculator-card {
-			background: rgba(255, 255, 255, 0.1);
-			backdrop-filter: blur(10px);
-			border-radius: 25px;
-			padding: 2rem;
-			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-			border: 1px solid rgba(255, 255, 255, 0.18);
+			background: var(--glass-bg);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			border-radius: 20px;
+			padding: 1.5rem;
+			border: 1px solid var(--glass-border);
+			box-shadow: 0 8px 32px 0 var(--glass-shadow);
 			transform-origin: center;
 			animation: cardEntrance 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+			position: relative;
+			overflow: hidden;
+			max-width: 450px;
+			margin: 0 auto;
 		}
 
-		@keyframes cardEntrance {
-			from {
-				opacity: 0;
-				transform: scale(0.8) translateY(-30px);
-			}
-
-			to {
-				opacity: 1;
-				transform: scale(1) translateY(0);
-			}
+		.form-group {
+			background: var(--glass-bg);
+			border-radius: 12px;
+			padding: 0.8rem;
+			margin-bottom: 1rem;
+			border: 1px solid var(--glass-border);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
 		}
 
-		.form-range {
-			accent-color: var(--primary-color);
+		h2 {
+			font-size: 1.5rem;
+			margin-bottom: 0.8rem;
 		}
 
-		.form-range::-webkit-slider-thumb {
-			transition: transform 0.2s;
+		label {
+			font-size: 0.9rem;
+			margin-bottom: 0.3rem;
 		}
 
-		.form-range::-webkit-slider-thumb:hover {
-			transform: scale(1.2);
+		.input-group {
+			background: rgba(255, 255, 255, 0.05);
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.input-group-text {
+			padding: 0.3rem 0.6rem;
+			font-size: 0.9rem;
+			background: var(--primary-color);
+			color: var(--light-color);
+			border: none;
+			font-weight: 600;
+		}
+
+		.form-control {
+			padding: 0.3rem 0.6rem;
+			font-size: 0.9rem;
+			background: rgba(255, 255, 255, 0.1);
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			color: var(--light-color);
+			font-weight: 500;
+		}
+
+		.form-control:focus {
+			background: rgba(255, 255, 255, 0.15);
+			border-color: var(--primary-color);
+			color: var(--light-color);
+			box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.25);
 		}
 
 		.bmi-chart {
-			height: 25px;
-			border-radius: 12px;
-			overflow: hidden;
-			margin: 1.5rem 0;
+			height: 20px;
+			border-radius: 10px;
+			margin: 1rem 0;
 			position: relative;
 			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 		}
 
 		.bmi-indicator {
-			width: 25px;
-			height: 25px;
+			width: 20px;
+			height: 20px;
 			background: var(--accent-color);
 			position: absolute;
 			border-radius: 50%;
@@ -103,11 +137,23 @@
 			transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 			border: 1px solid rgba(255, 255, 255, 0.1);
 			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+			padding: 1rem !important;
+			margin-bottom: 1rem !important;
 		}
 
 		.result-card.show {
 			opacity: 1;
 			transform: translateY(0);
+		}
+
+		.result-card h4 {
+			font-size: 1.2rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.result-card p {
+			font-size: 0.9rem;
+			margin-bottom: 0.5rem;
 		}
 
 		.result-underweight {
@@ -130,61 +176,15 @@
 			color: #fff;
 		}
 
-		.input-group-text {
-			background: var(--primary-color);
-			color: var(--light-color);
-			border: none;
-			font-weight: 600;
-		}
-
-		.form-control {
-			background: rgba(255, 255, 255, 0.1);
-			border: 1px solid rgba(255, 255, 255, 0.2);
-			color: var(--light-color);
-			font-weight: 500;
-		}
-
-		.form-control:focus {
-			background: rgba(255, 255, 255, 0.15);
-			border-color: var(--primary-color);
-			color: var(--light-color);
-			box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.25);
-		}
-
-		.btn {
-			border-radius: 12px;
-			padding: 0.8rem 2rem;
-			font-weight: 600;
-			transition: all 0.3s ease;
-			text-transform: uppercase;
-			letter-spacing: 1px;
-		}
-
-		.btn-primary {
-			background: var(--primary-color);
-			border: none;
-		}
-
-		.btn-primary:hover {
-			background: #ff5252;
-			transform: translateY(-2px);
-			box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-		}
-
-		.btn-outline-light:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-		}
-
 		.suggestion-list {
 			list-style: none;
 			padding-left: 0;
-			margin-top: 1rem;
+			margin-top: 0.5rem;
 		}
 
 		.suggestion-list li {
-			margin-bottom: 0.5rem;
-			font-size: 0.95rem;
+			margin-bottom: 0.3rem;
+			font-size: 0.85rem;
 			opacity: 0;
 			transform: translateX(-20px);
 			animation: slideIn 0.5s forwards;
@@ -207,6 +207,81 @@
 
 		.suggestion-list li:nth-child(3) {
 			animation-delay: 0.3s;
+		}
+
+		.btn {
+			border-radius: 12px;
+			padding: 0.5rem 1.5rem;
+			font-weight: 600;
+			transition: all 0.3s ease;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			font-size: 0.9rem;
+		}
+
+		.btn-primary {
+			background: var(--primary-color);
+			border: none;
+		}
+
+		.btn-primary:hover {
+			background: #ff5252;
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+		}
+
+		.btn-outline-light:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+		}
+
+		.d-flex.justify-content-between.text-white.small {
+			font-size: 0.75rem;
+			margin-bottom: 1rem;
+		}
+
+		@keyframes cardEntrance {
+			from {
+				opacity: 0;
+				transform: scale(0.8) translateY(-30px);
+			}
+
+			to {
+				opacity: 1;
+				transform: scale(1) translateY(0);
+			}
+		}
+
+		.form-range {
+			accent-color: var(--primary-color);
+		}
+
+		.form-range::-webkit-slider-thumb {
+			transition: transform 0.2s;
+		}
+
+		.form-range::-webkit-slider-thumb:hover {
+			transform: scale(1.2);
+		}
+
+		@media (max-height: 700px) {
+			.calculator-card {
+				padding: 1rem;
+			}
+
+			.form-group {
+				padding: 0.6rem;
+				margin-bottom: 0.8rem;
+			}
+
+			.result-card {
+				padding: 0.8rem !important;
+				margin-bottom: 0.8rem !important;
+			}
+
+			.suggestion-list li {
+				margin-bottom: 0.2rem;
+			}
 		}
 	</style>
 </head>
